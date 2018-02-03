@@ -31,13 +31,16 @@
         <a id="writeData">Click me to write data</a>
         <a id="modal-link">Click me to open modal</a>
     </div>
-    <div id="modal-window" class="ui modal">
-        <div class="header">Header</div>
-        <div class="image content">
-            <img class="image">
-            <div class="description">
-                <p>Hello</p>
-            </div>
+    <div id='modal-window' class="ui modal">
+        <div class="header">Register</div>
+    <div id='registerinformation' class="ui input">
+        <input id='registerform-email' placeholder="Email" type="text">
+
+        <input id='registerform-password' placeholder="password" type="text">
+    </div>
+    <div class="actions">
+        <div id='registerform-registerbutton' class="ui approve button">Register!</div>
+        <div class="ui cancel button">Cancel</div>
         </div>
     </div>
     <style>
@@ -59,16 +62,33 @@
         };
         firebase.initializeApp(config);
         let registerBtn = document.getElementById("register");
-        registerBtn.addEventListener('click', () => {
-            let email = "test@test.com";
-            let password = "password";
-            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-                // Handle Errors here.
-                let errorCode = error.code;
-                let errorMessage = error.message;
-                console.log("Error creating account!");
+            registerBtn.addEventListener('click', () => {
+                $('#modal-window').modal('show');
             });
-        });
+        let registerConfirmBtn = document.getElementById("registerform-registerbutton");
+            registerConfirmBtn.addEventListener('click', () => {
+                let email = document.getElementById('registerform-email').value;
+                let password = document.getElementById('registerform-password').value;
+                firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+                    //Handle Errors
+                    let errorCode = error.code;
+
+                    let errorMessage = error.message;
+                    console.log("Error Creating account!");
+                    let sendError = document.getElementById("registerinformation");
+                    sendError.innerHTML += "<a id=\"ErrorText\" class=\"ui input red\"> There was an error creating the account!</a>";
+                });
+            });
+        // registerBtn.addEventListener('click', () => {
+        //     let email = "test@test.com";
+        //     let password = "password";
+        //     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        //         // Handle Errors here.
+        //         let errorCode = error.code;
+        //         let errorMessage = error.message;
+        //         console.log("Error creating account!");
+        //     });
+        // });
         let loginBtn = document.getElementById("login");
         loginBtn.addEventListener('click', () => {
             if (loginBtn.innerText === "Login") {
@@ -105,9 +125,9 @@
             writeUserData("1", "Test", "test@test.com")
         });
 
-        document.getElementById('modal-link').addEventListener('click', () => {
-            $('#modal-window').modal('show');
-        });
+        // document.getElementById('register').addEventListener('click', () => {
+        //     $('#modal-window').modal('show');
+        // });
     </script>
 </body>
 
