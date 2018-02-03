@@ -10,28 +10,41 @@
         <script src="/semantic.min.js"></script>
     </head>
     <body>
-        <img class="ui avatar image" src="/testdoge.jpg">
-        <span>Username</span>
-        <p>Hello, <%= greeting %>!</p>
-        <div class="ui secondary pointing menu">
-          <a id="home-tab" class="item active">
+
+
+        <div id="block-header-bar" class="ui secondary pointing menu">
+            <img class="ui medium circular image" src="/TestLogo3.png" max-height="42" max-width="42">
+          <a id="home-tab" class="item">
             Home
+          </a>
+          <a id="nutrition-tab" class="item active">
+              Nutrition
+            </a>
+            <a id="workouts-tab" class="item">
+                Workouts
+              </a>
+          <a id="friends-tab" class="item">
+                Friends
           </a>
           <a id="message-tab" class="item">
             Messages
           </a>
-          <a id="friends-tab" class="item">
-            Friends
-          </a>
+
           <div class="right menu">
+            <a class="ui item">
+                <img class="ui avatar image" src="/testdoge.jpg">
+                <span>Username</span>
+            </a>
             <a class="ui item">
               Logout
             </a>
           </div>
         </div>
         <div id="ui-content" class="ui segment">
-          <p>Hello</p>
+          <p>Add Graph of calories burn and calories eaten here!!!</p>
         </div>
+
+
 
         <div class="ui progress">
             <div class="bar">
@@ -39,8 +52,33 @@
             </div>
             <div class="label">1337/2000 Calories Consumed</div>
           </div>
+
+          <div class="ui three column very relaxed grid">
+              <div class="column">
+                <div class="ui large label">
+                <p>Breakfast</p>
+                </div>
+              </div>
+              <div class="ui vertical divider">
+                and
+              </div>
+              <div class="column">
+              <div class="ui large label">
+                <p>Lunch</p>
+              </div>
+              </div>
+              <div class="ui vertical divider">
+                not
+              </div>
+              <div class="column">
+                  <div class="ui large label">
+                <p>Dinner</p>
+                  </div>
+              </div>
+            </div>
+
         <div class="ui three column very relaxed grid">
-            <div class="column">
+          <div class="column">
                 <div class="ui inverted segment">
                     <div class="ui inverted relaxed divided list">
                       <div class="item">
@@ -120,29 +158,83 @@
             </div>
           </div>
 
+          <div class="ui three column very relaxed grid">
+              <div class="column">
+                  <div class="ui inverted segment">
+                      <button class="fluid ui button">Add</button>
+                  </div>
+              </div>
+              <div class="ui vertical divider">
+                and
+              </div>
+              <div class="column">
+                  <div class="ui inverted segment">
+                      <button class="fluid ui button">Add</button>
+                  </div>
+              </div>
+              <div class="ui vertical divider">
+                not
+              </div>
+              <div class="column">
+                  <div class="ui inverted segment">
+                      <button class="fluid ui button">Add</button>
+                  </div>
+              </div>
+            </div>
+
         <script>
             let home = document.getElementById("home-tab")
-            let message = document.getElementById("message-tab")
+            let nutrition = document.getElementById("nutrition-tab")
+            let workouts = document.getElementById("workouts-tab")
             let friends = document.getElementById("friends-tab")
+            let message = document.getElementById("message-tab")
             let content = document.getElementById("ui-content")
             home.addEventListener('click', () => {
                 home.classList.add("active")
-                message.classList.remove("active")
+                nutrition.classList.remove("active")
+                workouts.classList.remove("active")
                 friends.classList.remove("active")
+                message.classList.remove("active")
                 content.innerText = "Home clicked!"
             });
-            message.addEventListener('click', () => {
+            nutrition.addEventListener('click', () => {
                 home.classList.remove("active")
-                message.classList.add("active")
+                nutrition.classList.add("active")
+                workouts.classList.remove("active")
                 friends.classList.remove("active")
-                content.innerText = "Message clicked!"
+                message.classList.remove("active")
+                content.innerText = "Nutrition clicked!"
+            });
+            workouts.addEventListener('click', () => {
+                home.classList.remove("active")
+                nutrition.classList.remove("active")
+                workouts.classList.add("active")
+                friends.classList.remove("active")
+                message.classList.remove("active")
+                content.innerText = "Workouts clicked!"
             });
             friends.addEventListener('click', () => {
                 home.classList.remove("active")
-                message.classList.remove("active")
+                nutrition.classList.remove("active")
+                workouts.classList.remove("active")
                 friends.classList.add("active")
+                message.classList.remove("active")
                 content.innerText = "Friends clicked!"
             });
+            message.addEventListener('click', () => {
+                home.classList.remove("active")
+                nutrition.classList.remove("active")
+                workouts.classList.remove("active")
+                friends.classList.remove("active")
+                message.classList.add("active")
+                content.innerText = "Messages clicked!"
+            });
+
         </script>
+        <style>
+        #block-header-bar { 
+     background-color: #a5a2a2;
+     padding: 10px; }
+        </style>
     </body>
 </html>
