@@ -32,9 +32,50 @@
       <div class="column">
         <div class="ui text shape">
             <div class="sides">
-              <div class="active ui header side">Yo Dawg! Dis iz were U ad Da Calendar With Workout Suggestions</div>
-              <div class="ui header side">Help, its another side!</div>
-              <div class="ui header side">This is the last side</div>
+              <div class="ui label">
+                Minutes
+              </div>
+              <div class="ui input">
+                <input id="Minutes" type="text" value= " " placeholder="Enter minutes...">
+
+              </div>
+              <div class="ui fitted hidden divider"></div>
+              <div class="ui label">
+                Weight
+              </div>
+              <div class="ui input">
+                <input id="Weight" type="text" value= " " placeholder="Enter weight...">
+              </div>
+              <div class="ui fitted hidden divider"></div>
+              <div class="ui label" align="right">
+                Workout
+              </div>
+              <select class="ui dropdown">
+                <option value="">Select Workout</option>
+                <option value="1">push up</option>
+                <option value="0">sit up</option>
+              </select>
+              <div class="ui fitted hidden divider"></div>
+              <div class="ui label">
+                Gender
+              </div>
+              <div class="ui selection dropdown">
+                <input type="hidden" name="gender">
+                <i class="dropdown icon"></i>
+                <div class="default text">Gender</div>
+                <div class="menu">
+                  <div class="item" data-value="1">Male</div>
+                  <div class="item" data-value="0">Female</div>
+                </div>
+              </div>
+
+              <div class="ui section divider"></div>
+              <button class="ui blue button">Calculate</button onClick="sum()">
+              <div class="ui input">
+                <input id="calorie_loss" type="text" placeholder="Calculated calorie loss" >
+              </div>
+
+
             </div>
           </div>
         </div>
@@ -46,12 +87,12 @@
           <div class="ui divider"></div>
             <button class="fluid ui right labeled icon button">
                 <i class="right arrow icon"></i>
-                  Arms     
+                  Arms
             </button>
           <div class="ui divider"></div>
             <button class="fluid ui right labeled icon button">
                 <i class="right arrow icon"></i>
-                  Core     
+                  Core
             </button>
           <div class="ui divider"></div>
             <button class="fluid ui right labeled icon button">
@@ -91,7 +132,17 @@
         storageBucket: "",
         messagingSenderId: "298079984245"
       };
-      firebase.initializeApp(config);
+      function sum(button)
+      {
+        firebase.initializeApp(config);
+        let weight_box=parseInt(document.getElementById("Weight"))
+
+
+        let min_box=parseInt(document.getElementById("Minutes"))
+        result = weight_box.value + min_box.value
+        document.getElementById("calorie_loss").value = result;
+      }
+
     </script>
 </body>
 
