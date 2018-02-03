@@ -20,12 +20,73 @@
         <a href="/workout" id="workouts-tab" class="item">Workouts</a>
 
 
-        <div class="right menu">
-            <a class="ui item">
-                <img class="ui avatar image" src="/testdoge.jpg">
-                <span>Username</span>
-            </a>
-            <a class="ui item">Logout</a>
+    <div class="right menu">
+        <a class="ui item">
+            <img class="ui avatar image" src="/testdoge.jpg">
+            <span>Username</span>
+        </a>
+        <a id="login" class="ui item">Login</a>
+        <a id="register" class="ui item">Register</a>
+        </div>
+    </div>
+    <div id='modal-breakfast' class="ui modal">
+        <div class="header">Breakfast!!</div>
+    <div id='breakfast-adder' class="ui input">
+        <input id='breakfast-food' placeholder="Food" type="text">
+
+        <input id='breakfast-calorie' placeholder="Calorie Intake" type="text">
+    </div>
+    <div class="actions">
+        <div id='breakfast-confirm' class="ui approve button">Add!</div>
+        <div class="ui cancel button">Cancel</div>
+        </div>
+    </div> 
+        <div id='modal-lunch' class="ui modal">
+        <div class="header">Breakfast!!</div>
+    <div id='lunch-adder' class="ui input">
+        <input id='lunch-food' placeholder="Food" type="text">
+
+        <input id='lunch-calorie' placeholder="Calorie Intake" type="text">
+    </div>
+    <div class="actions">
+        <div id='lunch-confirm' class="ui approve button">Add!</div>
+        <div class="ui cancel button">Cancel</div>
+        </div>
+    </div> 
+        <div id='modal-dinner' class="ui modal">
+        <div class="header">Breakfast!!</div>
+    <div id='dinner-adder' class="ui input">
+        <input id='dinner-food' placeholder="Food" type="text">
+
+        <input id='dinner-calorie' placeholder="Calorie Intake" type="text">
+    </div>
+    <div class="actions">
+        <div id='dinner-confirm' class="ui approve button">Add!</div>
+        <div class="ui cancel button">Cancel</div>
+        </div>
+    </div>    
+    <div id='modal-window' class="ui modal">
+        <div class="header">Register</div>
+    <div id='registerinformation' class="ui input">
+        <input id='registerform-email' placeholder="Email" type="text">
+
+        <input id='registerform-password' placeholder="password" type="text">
+    </div>
+    <div class="actions">
+        <div id='registerform-registerbutton' class="ui approve button">Register!</div>
+        <div class="ui cancel button">Cancel</div>
+        </div>
+    </div>
+    <div id='modal-login' class="ui modal">
+        <div class="header">Login</div>
+    <div id='loginInformation' class="ui input">
+        <input id='loginform-email' placeholder="Email" type="text">
+
+        <input id='loginform-password' placeholder="password" type="text">
+    </div>
+    <div class="actions">
+        <div id='loginform-loginbutton' class="ui approve button">Login!</div>
+        <div class="ui cancel button">Cancel</div>
         </div>
     </div>
     <div id="ui-content" class="ui segment">
@@ -133,16 +194,16 @@
         <div class="ui three column very relaxed grid">
             <div class="column">
                 <div class="ui inverted segment">
-                    <button class="fluid ui button">Add</button>
+                    <button id= 'breakfast-button' class="fluid ui button">Add</button>
                 </div>
             </div>
             <div class="column">
                 <div class="ui inverted segment">
-                    <button class="fluid ui button">Add</button>
+                    <button id= 'lunch-button' class="fluid ui button">Add</button>
                 </div>
             </div>
             <div class="column">
-                <div class="ui inverted segment">
+                <div id= 'dinner-button' class="ui inverted segment">
                     <button class="fluid ui button">Add</button>
                 </div>
             </div>
@@ -166,6 +227,76 @@
         messagingSenderId: "298079984245"
       };
       firebase.initializeApp(config);
+        let registerBtn = document.getElementById("register");
+        registerBtn.addEventListener('click', () => {
+            $('#modal-window').modal('show');
+        });
+        let registerConfirmBtn = document.getElementById("registerform-registerbutton");
+        registerConfirmBtn.addEventListener('click', () => {
+            let email = document.getElementById('registerform-email').value;
+            let password = document.getElementById('registerform-password').value;
+            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+                //Handle Errors
+                let errorCode = error.code;
+
+                let errorMessage = error.message;
+                console.log("Error Creating account!");
+                let sendError = document.getElementById("registerinformation");
+                sendError.innerHTML += "<a id=\"ErrorText\" class=\"ui input red\"> There was an error creating the account!</a>";
+            });
+        });
+
+        let loginBtn = document.getElementById("login");
+        loginBtn.addEventListener('click', () => {
+            if(loginBtn.innerText === "Login") {
+                $('#modal-login').modal('show');
+            } else {
+                firebase.auth().signOut().then(function() {
+
+                }).catch(function(error) {
+
+                });
+            }
+        });
+        let loginBtnConfirm = document.getElementById("loginform-loginbutton");
+        loginBtnConfirm.addEventListener('click', () => {
+            let email = document.getElementById('loginform-email').value;
+            let password = document.getElementById("loginform-password").value;
+            firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+                // Handle Errors here.
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                console.log("Error logging in!");
+                let sendError = document.getElementById("loginInformation");
+                sendError.innerHTML += "<a id=\"ErrorText\" class= \"ui input red\"> There was an error logging in!</a>"
+            });
+        });
+        let breakfastAddBtn = document.getElementById("breakfast-button");
+        breakfastAddBtn.addEventListener('click' () => {
+            $('#modal-breakfast').modal('show');
+        });
+        let lunchAddBtn = document.getElementById("lunch-button");
+        breakfastAddBtn.addEventListener('click' () => {
+            $('#modal-lunch').modal('show');
+        });
+        let dinnerAddBtn = document.getElementById("dinner-button");
+        breakfastAddBtn.addEventListener('click' () => {
+            $('#modal-dinner').modal('show');
+        });        
+        let breakfastConfirm = document.getElementById("breakfast-confirm");
+        breakfastConfirm.addEventListener('click', () => {
+            let food = document.getElementById("breakfast-food").value;
+            let calories = document.getElementById("breakfast-calorie").value;
+        });
+                // Start developing database
+        let db = firebase.database();
+
+        function writeUserData(userId, food, calorie) {
+            firebase.database().ref('users/' + userId).set({
+                food: food
+                calories: calorie,
+            });
+        }
     </script>
 </body>
 
