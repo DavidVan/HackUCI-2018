@@ -29,6 +29,16 @@
     <div id="ui-content" class="ui segment">
         <p>This is my home</p>
         <a id="writeData">Click me to write data</a>
+        <a id="modal-link">Click me to open modal</a>
+    </div>
+    <div id="modal-window" class="ui modal">
+        <div class="header">Header</div>
+        <div class="image content">
+            <img class="image">
+            <div class="description">
+                <p>Hello</p>
+            </div>
+        </div>
     </div>
     <style>
         #block-header-bar {
@@ -82,16 +92,21 @@
 
         // Start developing database
         let db = firebase.database();
+
         function writeUserData(userId, name, email) {
-          firebase.database().ref('users/' + userId).set({
-            username: name,
-            email: email
-          });
+            firebase.database().ref('users/' + userId).set({
+                username: name,
+                email: email
+            });
         }
 
         let writeDataLink = document.getElementById("writeData")
         writeDataLink.addEventListener('click', () => {
             writeUserData("1", "Test", "test@test.com")
+        });
+
+        document.getElementById('modal-link').addEventListener('click', () => {
+            $('#modal-window').modal('show');
         });
     </script>
 </body>
