@@ -4,6 +4,8 @@ const path = require('path');
 const calculate_calories = require('./routes/calculate_calories');
 
 const index = require('./routes/index'); // Include our index.js file from 'routes' folder.
+const nutrition = require('./routes/nutrition'); // Include our nutrition.js file from 'routes' folder.
+const workout = require('./routes/workout'); // Include our index.js file from 'routes' folder.
 
 const app = express();
 
@@ -17,6 +19,8 @@ app.set('views', path.join(__dirname, 'views')); // Make sure we have the right 
 app.set('view engine', 'ejs'); // Set view engine to use ejs.
 
 app.use('/', index); // Serve the index page.
+app.use('/nutrition', nutrition);
+app.use('/workout', workout);
 app.use('/calculate_calories', calculate_calories);
 app.listen(1337);
 console.log('Server running on port 1337');
