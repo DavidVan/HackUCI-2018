@@ -1,182 +1,159 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title><%= title %></title>
-        <link rel="stylesheet" type="text/css" href="/semantic.min.css">
-        <script
-          src="https://code.jquery.com/jquery-3.1.1.min.js"
-          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-          crossorigin="anonymous"></script>
-        <script src="/semantic.min.js"></script>
-    </head>
-    <body>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" type="text/css" href="/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="/semantic.min.js"></script>
+</head>
+
+<body>
 
 
-        <div id="block-header-bar" class="ui secondary pointing menu">
-            <img class="ui medium circular image" src="/TestLogo3.png" max-height="42" max-width="42">
-          <a href="/" id="home-tab" class="item">
-            Home
-          </a>
-          <a href="/nutrition" id="nutrition-tab" class="item active">
-              Nutrition
-            </a>
-            <a href="/workout" id="workouts-tab" class="item">
-                Workouts
-              </a>
+    <div id="block-header-bar" class="ui secondary pointing menu">
+        <img class="ui medium circular image" src="/TestLogo3.png" max-height="42" max-width="42">
+        <a href="/" id="home-tab" class="item">Home</a>
+        <a href="/nutrition" id="nutrition-tab" class="item active">Nutrition</a>
+        <a href="/workout" id="workouts-tab" class="item">Workouts</a>
 
 
-          <div class="right menu">
+        <div class="right menu">
             <a class="ui item">
                 <img class="ui avatar image" src="/testdoge.jpg">
                 <span>Username</span>
             </a>
-            <a class="ui item">
-              Logout
-            </a>
-          </div>
+            <a class="ui item">Logout</a>
         </div>
-        <div id="ui-content" class="ui segment">
-          <p>Add Graph of calories burn and calories eaten here!!!</p>
-          <div class="ui progress">
-              <div class="bar">
+    </div>
+    <div id="ui-content" class="ui segment">
+        <p>Add Graph of calories burn and calories eaten here!!!</p>
+        <div class="ui progress">
+            <div class="bar">
                 <div class="progress"></div>
-              </div>
-              <div class="label">1337/2000 Calories Consumed</div>
             </div>
-
-            <div class="ui three column very relaxed grid">
-                <div class="column">
-                  <div class="ui large label">
-                  <p>Breakfast</p>
-                  </div>
-                </div>
-                <div class="ui vertical divider">
-                  and
-                </div>
-                <div class="column">
-                <div class="ui large label">
-                  <p>Lunch</p>
-                </div>
-                </div>
-                <div class="ui vertical divider">
-                  not
-                </div>
-                <div class="column">
-                    <div class="ui large label">
-                  <p>Dinner</p>
-                    </div>
-                </div>
-              </div>
-
-          <div class="ui three column very relaxed grid">
-            <div class="column">
-                  <div class="ui inverted segment">
-                      <div class="ui inverted relaxed divided list">
-                        <div class="item">
-                          <div class="content">
-                            <div class="header">Fried Rice</div>
-                            Calories: 980     |     Protein(g):300     |     Fat(g):30
-                          </div>
-                        </div>
-                        <div class="item">
-                          <div class="content">
-                            <div class="header">Chicken Breast</div>
-                            Calories: 650     |     Protein(g):400     |     Fat(g):80
-                          </div>
-                        </div>
-                        <div class="item">
-                          <div class="content">
-                            <div class="header">Sandwich</div>
-                            Calories: 300     |     Protein(g):100     |     Fat(g):230
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-              </div>
-              <div class="ui vertical divider">
-                and
-              </div>
-              <div class="column">
-                  <div class="ui inverted segment">
-                      <div class="ui inverted relaxed divided list">
-                        <div class="item">
-                          <div class="content">
-                            <div class="header">Fried Chicken</div>
-                            Calories: 120     |     Protein(g):140     |     Fat(g):210
-                          </div>
-                        </div>
-                        <div class="item">
-                          <div class="content">
-                            <div class="header">Chicken Swag</div>
-                            Calories: 720     |     Protein(g):430     |     Fat(g):720
-                          </div>
-                        </div>
-                        <div class="item">
-                          <div class="content">
-                            <div class="header">Meat Monster</div>
-                            Calories: 321     |     Protein(g):100     |     Fat(g):230
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-              </div>
-              <div class="ui vertical divider">
-                not
-              </div>
-              <div class="column">
-                  <div class="ui inverted segment">
-                      <div class="ui inverted relaxed divided list">
-                        <div class="item">
-                          <div class="content">
-                            <div class="header">Twinkie</div>
-                            Calories: 570     |     Protein(g):300     |     Fat(g):30
-                          </div>
-                        </div>
-                        <div class="item">
-                          <div class="content">
-                            <div class="header">Porkchop</div>
-                            Calories: 230     |     Protein(g):20     |     Fat(g):234
-                          </div>
-                        </div>
-                        <div class="item">
-                          <div class="content">
-                            <div class="header">Swag Sandwich</div>
-                            Calories: 900     |     Protein(g):120     |     Fat(g):330
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-              </div>
-            </div>
-
-            <div class="ui three column very relaxed grid">
-                <div class="column">
-                    <div class="ui inverted segment">
-                        <button class="fluid ui button">Add</button>
-                    </div>
-                </div>
-                <div class="ui vertical divider">
-                  and
-                </div>
-                <div class="column">
-                    <div class="ui inverted segment">
-                        <button class="fluid ui button">Add</button>
-                    </div>
-                </div>
-                <div class="ui vertical divider">
-                  not
-                </div>
-                <div class="column">
-                    <div class="ui inverted segment">
-                        <button class="fluid ui button">Add</button>
-                    </div>
-                </div>
-              </div>
+            <div class="label">1337/2000 Calories Consumed</div>
         </div>
-        <style>
+
+        <div class="ui three column very relaxed grid">
+            <div class="column">
+                <div class="ui large label">
+                    <p>Breakfast</p>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui large label">
+                    <p>Lunch</p>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui large label">
+                    <p>Dinner</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui three column very relaxed grid">
+            <div class="column">
+                <div class="ui inverted segment">
+                    <div class="ui inverted relaxed divided list">
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">Fried Rice</div>
+                                Calories: 980 | Protein(g):300 | Fat(g):30
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">Chicken Breast</div>
+                                Calories: 650 | Protein(g):400 | Fat(g):80
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">Sandwich</div>
+                                Calories: 300 | Protein(g):100 | Fat(g):230
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui inverted segment">
+                    <div class="ui inverted relaxed divided list">
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">Fried Chicken</div>
+                                Calories: 120 | Protein(g):140 | Fat(g):210
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">Chicken Swag</div>
+                                Calories: 720 | Protein(g):430 | Fat(g):720
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">Meat Monster</div>
+                                Calories: 321 | Protein(g):100 | Fat(g):230
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui inverted segment">
+                    <div class="ui inverted relaxed divided list">
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">Twinkie</div>
+                                Calories: 570 | Protein(g):300 | Fat(g):30
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">Porkchop</div>
+                                Calories: 230 | Protein(g):20 | Fat(g):234
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">Swag Sandwich</div>
+                                Calories: 900 | Protein(g):120 | Fat(g):330
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui three column very relaxed grid">
+            <div class="column">
+                <div class="ui inverted segment">
+                    <button class="fluid ui button">Add</button>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui inverted segment">
+                    <button class="fluid ui button">Add</button>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui inverted segment">
+                    <button class="fluid ui button">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
         #block-header-bar {
-     background-color: #a5a2a2;
-     padding: 10px; }
-        </style>
-    </body>
+            background-color: #a5a2a2;
+            padding: 10px;
+        }
+    </style>
+</body>
+
 </html>
