@@ -22,11 +22,13 @@
                 <img class="ui avatar image" src="/testdoge.jpg">
                 <span>Username</span>
             </a>
-            <a class="ui item">Logout</a>
+            <a id="login" class="ui item">Login</a>
+            <a id="register" class="ui item">Register</a>
         </div>
     </div>
     <div id="ui-content" class="ui segment">
         <p>This is my home</p>
+        <a id="writeData">Click me to write data</a>
     </div>
     <style>
         #block-header-bar {
@@ -34,6 +36,64 @@
             padding: 10px;
         }
     </style>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        let config = {
+            apiKey: "AIzaSyD69_6YZen6nLawXQ14vI4fBwGiaw2Ets8",
+            authDomain: "hackuci2018-dcb66.firebaseapp.com",
+            databaseURL: "https://hackuci2018-dcb66.firebaseio.com",
+            projectId: "hackuci2018-dcb66",
+            storageBucket: "",
+            messagingSenderId: "298079984245"
+        };
+        firebase.initializeApp(config);
+        let registerBtn = document.getElementById("register");
+        registerBtn.addEventListener('click', () => {
+            let email = "test@test.com";
+            let password = "password";
+            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+                // Handle Errors here.
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                console.log("Error creating account!");
+            });
+        });
+        let loginBtn = document.getElementById("login");
+        loginBtn.addEventListener('click', () => {
+            if (loginBtn.innerText === "Login") {
+                let email = "test@test.com";
+                let password = "password";
+                firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+                    // Handle Errors here.
+                    let errorCode = error.code;
+                    let errorMessage = error.message;
+                    console.log("Error logging in!");
+                });
+                loginBtn.innerText = "Logout"
+            } else {
+                firebase.auth().signOut().then(function() {
+                    // Sign-out successful.
+                }).catch(function(error) {
+                    // An error happened.
+                });
+            }
+        });
+
+        // Start developing database
+        let db = firebase.database();
+        function writeUserData(userId, name, email) {
+          firebase.database().ref('users/' + userId).set({
+            username: name,
+            email: email
+          });
+        }
+
+        let writeDataLink = document.getElementById("writeData")
+        writeDataLink.addEventListener('click', () => {
+            writeUserData("1", "Test", "test@test.com")
+        });
+    </script>
 </body>
 
 </html>
