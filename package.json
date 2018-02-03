@@ -1,0 +1,24 @@
+{
+  "name": "hackuci2018",
+  "version": "1.0.0",
+  "description": "HackUCI 2018 Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidVan/HackUCI-2018.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidVan/HackUCI-2018/issues"
+  },
+  "homepage": "https://github.com/DavidVan/HackUCI-2018#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2"
+  }
+}
