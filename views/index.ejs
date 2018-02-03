@@ -2,8 +2,57 @@
 <html>
     <head>
         <title><%= title %></title>
+        <link rel="stylesheet" type="text/css" href="/semantic.min.css">
+        <script
+          src="https://code.jquery.com/jquery-3.1.1.min.js"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous"></script>
+        <script src="/semantic.min.js"></script>
     </head>
     <body>
         <p>Hello, <%= greeting %>!</p>
+        <div class="ui secondary pointing menu">
+          <a id="home-tab" class="item active">
+            Home
+          </a>
+          <a id="message-tab" class="item">
+            Messages
+          </a>
+          <a id="friends-tab" class="item">
+            Friends
+          </a>
+          <div class="right menu">
+            <a class="ui item">
+              Logout
+            </a>
+          </div>
+        </div>
+        <div id="ui-content" class="ui segment">
+          <p>Hello</p>
+        </div>
+        <script>
+            let home = document.getElementById("home-tab")
+            let message = document.getElementById("message-tab")
+            let friends = document.getElementById("friends-tab")
+            let content = document.getElementById("ui-content")
+            home.addEventListener('click', () => {
+                home.classList.add("active")
+                message.classList.remove("active")
+                friends.classList.remove("active")
+                content.innerText = "Home clicked!"
+            });
+            message.addEventListener('click', () => {
+                home.classList.remove("active")
+                message.classList.add("active")
+                friends.classList.remove("active")
+                content.innerText = "Message clicked!"
+            });
+            friends.addEventListener('click', () => {
+                home.classList.remove("active")
+                message.classList.remove("active")
+                friends.classList.add("active")
+                content.innerText = "Friends clicked!"
+            });
+        </script>
     </body>
 </html>

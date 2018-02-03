@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, 'public'))); // Expose the 'public' folder.
+app.use(express.static(path.join(__dirname, 'semantic/dist'))); // Expose the 'semantic/dist' folder.
 app.set('views', path.join(__dirname, 'views')); // Make sure we have the right 'views' folder defined.
 
 app.set('view engine', 'ejs'); // Set view engine to use ejs.
