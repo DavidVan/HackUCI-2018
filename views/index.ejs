@@ -28,110 +28,111 @@
     </div>
     <div id='modal-window' class="ui modal">
         <div class="header">Register</div>
-    <div id='registerinformation' class="ui input">
-        <input id='registerform-email' placeholder="Email" type="text">
+        <div id='registerinformation' class="ui input">
+            <input id='registerform-email' placeholder="Email" type="text">
 
-        <input id='registerform-password' placeholder="password" type="text">
-    </div>
-    <div class="actions">
-        <div id='registerform-registerbutton' class="ui approve button">Register!</div>
-        <div class="ui cancel button">Cancel</div>
+            <input id='registerform-password' placeholder="password" type="text">
+        </div>
+        <div class="actions">
+            <div id='registerform-registerbutton' class="ui approve button">Register!</div>
+            <div class="ui cancel button">Cancel</div>
         </div>
     </div>
     <div id='modal-login' class="ui modal">
         <div class="header">Login</div>
-    <div id='loginInformation' class="ui input">
-        <input id='loginform-email' placeholder="Email" type="text">
+        <div id='loginInformation' class="ui input">
+            <input id='loginform-email' placeholder="Email" type="text">
 
-        <input id='loginform-password' placeholder="password" type="text">
-    </div>
-    <div class="actions">
-        <div id='loginform-loginbutton' class="ui approve button">Login!</div>
-        <div class="ui cancel button">Cancel</div>
+            <input id='loginform-password' placeholder="password" type="text">
+        </div>
+        <div class="actions">
+            <div id='loginform-loginbutton' class="ui approve button">Login!</div>
+            <div class="ui cancel button">Cancel</div>
         </div>
     </div>
 
     <div class="ui feed">
-      <div class="event">
-        <div class="label">
-          <img src="/testdoge.jpg">
-        </div>
-        <div class="content">
-          <div class="summary">
-            <a class="user">
+        <div id="chartContainer"></div>
+        <div class="event">
+            <div class="label">
+                <img src="/testdoge.jpg">
+            </div>
+            <div class="content">
+                <div class="summary">
+                    <a class="user">
               Ryan Ea
             </a> added you as a friend
-            <div class="date">
-              1 Hour Ago
-            </div>
-          </div>
-          <div class="meta">
-            <a class="like">
+                    <div class="date">
+                        1 Hour Ago
+                    </div>
+                </div>
+                <div class="meta">
+                    <a class="like">
               <i class="like icon"></i> 4 Likes
             </a>
-          </div>
-        </div>
-      </div>
-      <div class="event">
-        <div class="label">
-          <img src="/testung.jpg">
-        </div>
-        <div class="content">
-          <div class="summary">
-            <a>Kenneth Ung</a> added <a>2 new Work out photos!</a>
-            <div class="date">
-              4 days ago
+                </div>
             </div>
-          </div>
-          <div class="extra images">
-            <a><img src="/Nutrition.png"></a>
-            <a><img src="/Workout.png"></a>
-          </div>
-          <div class="meta">
-            <a class="like">
+        </div>
+        <div class="event">
+            <div class="label">
+                <img src="/testung.jpg">
+            </div>
+            <div class="content">
+                <div class="summary">
+                    <a>Kenneth Ung</a> added <a>2 new Work out photos!</a>
+                    <div class="date">
+                        4 days ago
+                    </div>
+                </div>
+                <div class="extra images">
+                    <a><img src="/Nutrition.png"></a>
+                    <a><img src="/Workout.png"></a>
+                </div>
+                <div class="meta">
+                    <a class="like">
               <i class="like icon"></i> 1 Like
             </a>
-          </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="event">
-        <div class="label">
-          <img src="/testvan.jpg">
-        </div>
-        <div class="content">
-          <div class="summary">
-            <a class="user">
+        <div class="event">
+            <div class="label">
+                <img src="/testvan.jpg">
+            </div>
+            <div class="content">
+                <div class="summary">
+                    <a class="user">
               David Van
             </a> added you as a friend
-            <div class="date">
-              2 Days Ago
-            </div>
-          </div>
-          <div class="meta">
-            <a class="like">
+                    <div class="date">
+                        2 Days Ago
+                    </div>
+                </div>
+                <div class="meta">
+                    <a class="like">
               <i class="like icon"></i> 8 Likes
             </a>
-          </div>
-        </div>
-      </div>
-      <div class="event">
-        <div class="label">
-          <img src="/testung.jpg">
-        </div>
-        <div class="content">
-          <div class="summary">
-            <a>Kenneth Ung</a> Hit his goal of burning a total of 50,000 Calories since the begining!
-            <div class="date">
-              3 days ago
+                </div>
             </div>
-          </div>
-          <div class="meta">
-            <a class="like">
+        </div>
+        <div class="event">
+            <div class="label">
+                <img src="/testung.jpg">
+            </div>
+            <div class="content">
+                <div class="summary">
+                    <a>Kenneth Ung</a> Hit his goal of burning a total of 50,000 Calories since the begining!
+                    <div class="date">
+                        3 days ago
+                    </div>
+                </div>
+                <div class="meta">
+                    <a class="like">
               <i class="like icon"></i> 5 Likes
             </a>
-          </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <style>
@@ -140,8 +141,33 @@
             padding: 10px;
         }
     </style>
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
-    <script src = "/custom.js"> </script>
+    <script src="/custom.js">
+    </script>
+    <script type="text/javascript">
+        let svg = dimple.newSvg("#chartContainer", window.innerWidth, 300);
+        let data = [{
+            "name": "Breakfast",
+            "amount": "300"
+        }, {
+            "name": "Lunch",
+            "amount": "700"
+        }, {
+            "name": "Dinner",
+            "amount": "1300"
+        }]
+        let myChart = new dimple.chart(svg, data);
+        myChart.setBounds(55, 5, window.innerWidth - 100, 200);
+        let x = myChart.addCategoryAxis("x", "name");
+        let y = myChart.addCategoryAxis("y", "amount");
+        x.addOrderRule(["Breakfast", "Lunch", "Dinner"]);
+        myChart.addSeries(null, dimple.plot.line)
+        myChart.draw();
+        y.titleShape.text("Calories");
+        x.titleShape.text("Meal Period");
+    </script>
 </body>
 
 </html>
