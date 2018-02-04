@@ -20,7 +20,7 @@
         <div class="right menu">
             <a class="ui item">
                 <img class="ui avatar image" src="/testdoge.jpg">
-                <span>Username</span>
+                <span>Usertime</span>
             </a>
             <a id="login" class="ui item">Login</a>
             <a id="register" class="ui item">Register</a>
@@ -149,21 +149,74 @@
     <script type="text/javascript">
         let svg = dimple.newSvg("#chartContainer", window.innerWidth, 300);
         let data = [{
-            "name": "Breakfast",
+            "time": "07:52:23",
+            "category": "Breakfast",
             "amount": "300"
         }, {
-            "name": "Lunch",
+            "time": "07:59:23",
+            "category": "Breakfast",
             "amount": "700"
         }, {
-            "name": "Dinner",
+            "time": "08:52:23",
+            "category": "Breakfast",
+            "amount": "800"
+        }, {
+            "time": "09:52:23",
+            "category": "Breakfast",
+            "amount": "900"
+        }, {
+            "time": "10:52:23",
+            "category": "Breakfast",
+            "amount": "1200"
+        }, {
+            "time": "11:52:23",
+            "category": "Lunch",
             "amount": "1300"
+        }, {
+            "time": "12:52:23",
+            "category": "Lunch",
+            "amount": "1500"
+        }, {
+            "time": "13:52:23",
+            "category": "Lunch",
+            "amount": "1600"
+        }, {
+            "time": "14:52:23",
+            "category": "Lunch",
+            "amount": "1700"
+        }, {
+            "time": "15:52:23",
+            "category": "Lunch",
+            "amount": "1800"
+        }, {
+            "time": "20:52:23",
+            "category": "Dinner",
+            "amount": "2000"
+        }, {
+            "time": "22:52:23",
+            "category": "Dinner",
+            "amount": "2100"
+        }, {
+            "time": "23:52:23",
+            "category": "Dinner",
+            "amount": "2200"
+        }, {
+            "time": "23:55:23",
+            "category": "Dinner",
+            "amount": "2300"
+        }, {
+            "time": "23:58:23",
+            "category": "Dinner",
+            "amount": "2400"
         }]
         let myChart = new dimple.chart(svg, data);
         myChart.setBounds(55, 5, window.innerWidth - 100, 200);
-        let x = myChart.addCategoryAxis("x", "name");
+        //let x = myChart.addCategoryAxis("x", ["category", "time"]);
+        let x = myChart.addCategoryAxis("x", ["category", "time"]);
         let y = myChart.addCategoryAxis("y", "amount");
         x.addOrderRule(["Breakfast", "Lunch", "Dinner"]);
-        myChart.addSeries(null, dimple.plot.line)
+        let linePlot = myChart.addSeries(null, dimple.plot.line)
+        linePlot.barGap = 0
         myChart.draw();
         y.titleShape.text("Calories");
         x.titleShape.text("Meal Period");
