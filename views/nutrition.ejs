@@ -159,10 +159,10 @@
             <div class="column">
                 <div class="ui inverted segment">
                         <div class="fluid ui input">
-                                <input type="text" placeholder="Food Name">
+                                <input id='breakfastName' type="text" placeholder="Food Name">
                         </div>
                         <div class="fluid ui input">
-                                <input type="text" placeholder="Calories">
+                                <input id= 'breakfastIntake' type="text" placeholder="Calories">
                         </div>
                         <div class="ui divider"></div>
 
@@ -172,25 +172,25 @@
             <div class="column">
                 <div class="ui inverted segment">
                         <div class="fluid ui input">
-                                <input type="text" placeholder="Food Name">
+                                <input id= 'lunchName' type="text" placeholder="Food Name">
                         </div>
                         <div class="fluid ui input">
-                                <input type="text" placeholder="Calories">
+                                <input id= 'lunchIntake' type="text" placeholder="Calories">
                         </div>
                         <div class="ui divider"></div>
                     <button id= 'lunch-button' class="fluid ui button">Add</button>
                 </div>
             </div>
             <div class="column">
-                <div id= 'dinner-button' class="ui inverted segment">
+                <div class="ui inverted segment">
                         <div class="fluid ui input">
-                                <input type="text" placeholder="Food Name">
+                                <input id= 'dinnerName' type="text" placeholder="Food Name">
                         </div>
                         <div class="fluid ui input">
-                                <input type="text" placeholder="Calories">
+                                <input id= 'dinnerIntake' type="text" placeholder="Calories">
                         </div>
                         <div class="ui divider"></div>
-                    <button class="fluid ui button">Add</button>
+                    <button id='dinner-button' class="fluid ui button">Add</button>
                 </div>
             </div>
         </div>
@@ -202,80 +202,78 @@
         }
     </style>
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script src = "/custom.js"></script>
     <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyD69_6YZen6nLawXQ14vI4fBwGiaw2Ets8",
-        authDomain: "hackuci2018-dcb66.firebaseapp.com",
-        databaseURL: "https://hackuci2018-dcb66.firebaseio.com",
-        projectId: "hackuci2018-dcb66",
-        storageBucket: "",
-        messagingSenderId: "298079984245"
-      };
-      firebase.initializeApp(config);
-        let registerBtn = document.getElementById("register");
-        registerBtn.addEventListener('click', () => {
-            $('#modal-window').modal('show');
-        });
-        let registerConfirmBtn = document.getElementById("registerform-registerbutton");
-        registerConfirmBtn.addEventListener('click', () => {
-            let email = document.getElementById('registerform-email').value;
-            let password = document.getElementById('registerform-password').value;
-            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-                //Handle Errors
-                let errorCode = error.code;
 
-                let errorMessage = error.message;
-                console.log("Error Creating account!");
-                let sendError = document.getElementById("registerinformation");
-                sendError.innerHTML += "<a id=\"ErrorText\" class=\"ui input red\"> There was an error creating the account!</a>";
+        function writeUserData(userId, name, email) {
+            firebase.database().ref('users/' + userId).set({
+                username: name,
+                email: email
             });
-        });
+        }
+        function formatDate(date) {
+            var monthNames = [
+            "January", "February", "March",
+            "April", "May", "June", "July",
+            "August", "September", "October",
+            "November", "December"
+          ];
 
-        let loginBtn = document.getElementById("login");
-        loginBtn.addEventListener('click', () => {
-            if(loginBtn.innerText === "Login") {
-                $('#modal-login').modal('show');
-            } else {
-                firebase.auth().signOut().then(function() {
+          var day = date.getDate();
+          var monthIndex = date.getMonth();
+          var year = date.getFullYear();
 
-                }).catch(function(error) {
+          return day + ' ' + monthNames[monthIndex] + ' ' + year;
+        }
 
-                });
-            }
-        });
-        let loginBtnConfirm = document.getElementById("loginform-loginbutton");
-        loginBtnConfirm.addEventListener('click', () => {
-            let email = document.getElementById('loginform-email').value;
-            let password = document.getElementById("loginform-password").value;
-            firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-                // Handle Errors here.
-                let errorCode = error.code;
-                let errorMessage = error.message;
-                console.log("Error logging in!");
-                let sendError = document.getElementById("loginInformation");
-                sendError.innerHTML += "<a id=\"ErrorText\" class= \"ui input red\"> There was an error logging in!</a>"
+        function addToBreakfast(userID, mealName, calIntake) {
+            console.log(userID);
+            firebase.database().ref('users/' + userID).set({
+                    "date": formatDate(new Date()),
+                    "breakfast": [
+                        {
+                            'name': mealName, 'calories': calIntake
+                        }
+                    ]
             });
-        });
+        }
+
+        function addToLunch(userID, mealName, calIntake) {
+            firebase.database().ref('users/' + userID).set({
+                    "date": formatDate(new Date()),
+                    "lunch": { mealName: calIntake}
+            });
+        }
+
+        function addToDinner(userID, mealName, calIntake) {
+            firebase.database().ref('users/' + userID).set({
+                    "date": formatDate(new Date()),
+                    "dinner": { mealName: calIntake}
+            });
+        }
+
+        // let writeDataLink = document.getElementById("writeData")
+        // writeDataLink.addEventListener('click', () => {
+        //     writeUserData("1", "Test", "test@test.com")
+        // });
+
+        // document.getElementById('register').addEventListener('click', () => {
+        //     $('#modal-window').modal('show');
+        // });
         let breakfastAddBtn = document.getElementById("breakfast-button");
         breakfastAddBtn.addEventListener('click', () => {
-            $('#modal-breakfast').modal('show');
+            console.log(firebase.auth().currentUser.uid + " " + document.getElementById("breakfastName").value + " " + document.getElementById("breakfastIntake").value + " ");
+            addToBreakfast(firebase.auth().currentUser.uid, document.getElementById("breakfastName").value, document.getElementById("breakfastIntake").value);
         });
         let lunchAddBtn = document.getElementById("lunch-button");
         lunchAddBtn.addEventListener('click', () => {
-            $('#modal-lunch').modal('show');
+            addToLunch(firebase.auth().currentUser.uid, document.getElementById("lunchName").value, document.getElementById("lunchIntake").value);
         });
         let dinnerAddBtn = document.getElementById("dinner-button");
         dinnerAddBtn.addEventListener('click', () => {
-            $('#modal-dinner').modal('show');
+            addToDinner(firebase.auth().currentUser.uid, document.getElementById("dinnerName").value, document.getElementById("dinnerIntake").value);
         });        
-        let breakfastConfirm = document.getElementById("breakfast-confirm");
-        breakfastConfirm.addEventListener('click', () => {
-            let food = document.getElementById("breakfast-food").value;
-            let calories = document.getElementById("breakfast-calorie").value;
-        });
-                // Start developing database
-        let db = firebase.database();
+
 
     </script>
 </body>
