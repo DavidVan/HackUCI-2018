@@ -38,8 +38,6 @@
         <div class="ui cancel button">Cancel</div>
         </div>
     </div>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     <div id='modal-login' class="ui modal">
         <div class="header">Login</div>
     <div id='loginInformation' class="ui input">
@@ -52,9 +50,6 @@
         <div class="ui cancel button">Cancel</div>
         </div>
     </div>
-=======
-=======
->>>>>>> Stashed changes
 
     <div class="ui feed">
       <div class="event">
@@ -139,10 +134,6 @@
       </div>
     </div>
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     <style>
         #block-header-bar {
             background-color: #a5a2a2;
@@ -161,6 +152,9 @@
             messagingSenderId: "298079984245"
         };
         firebase.initializeApp(config);
+
+
+
         let registerBtn = document.getElementById("register");
         registerBtn.addEventListener('click', () => {
             $('#modal-window').modal('show');
@@ -224,6 +218,19 @@
         // document.getElementById('register').addEventListener('click', () => {
         //     $('#modal-window').modal('show');
         // });
+        function checkIfOn() {
+            console.log(firebase.auth().currentUser);
+            if(firebase.auth().currentUser !== null) {
+                let loginBtn = document.getElementById("login");
+                console.log("Hello");
+                loginBtn.innerText = "Logout";
+                document.getElementById("register").remove();
+
+            } 
+            console.log("HELLO WORLD");
+        }
+
+        window.setTimeout(checkIfOn,500);
     </script>
 </body>
 
