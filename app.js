@@ -22,5 +22,5 @@ app.use('/', index); // Serve the index page.
 app.use('/nutrition', nutrition);
 app.use('/workout', workout);
 app.use('/calculate_calories', calculate_calories);
-app.listen(1337);
+app.listen(process.env.PORT || 1337);
 console.log('Server running on port 1337');

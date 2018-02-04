@@ -19,7 +19,6 @@
   "homepage": "https://github.com/DavidVan/HackUCI-2018#readme",
   "dependencies": {
     "ejs": "^2.5.7",
-    "express": "^4.16.2",
-    "semantic-ui": "^2.2.14"
+    "express": "^4.16.2"
   }
 }
