@@ -22,5 +22,5 @@ app.use('/', index); // Serve the index page.
 app.use('/nutrition', nutrition);
 app.use('/workout', workout);
 app.use('/calculate_calories', calculate_calories);
-app.listen(8080);
-console.log('Server running on port 8080');
+app.listen(5000);
+console.log('Server running on port 5000');
