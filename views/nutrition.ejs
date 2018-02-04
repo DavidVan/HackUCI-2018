@@ -10,6 +10,7 @@
     <script src="/semantic.min.js"></script>
 </head>
 
+
 <body>
 
 
@@ -67,7 +68,7 @@
                         <div class=" fluid ui large label" align="middle">
                                 <p style="text-align:centered;">Breakfast</p>
                             </div>
-                    <div class="ui inverted relaxed divided list">
+                    <div id="breakfastDisplay" class="ui inverted relaxed divided list">
                         <div class="item">
                             <div class="content">
                                 <div class="header">Fried Rice</div>
@@ -102,10 +103,10 @@
             </div>
             <div class="column">
                 <div class="ui inverted segment">
-                    <div class="ui inverted relaxed divided list">
-                            <div class="fluid ui large label" align="middle">
-                                    <p style="text-align:centered;">Lunch</p>
-                                </div>
+                    <div class="fluid ui large label" align="middle">
+                        <p style="text-align:centered;">Lunch</p>
+                    </div>                    
+                    <div id="lunchDisplay" class="ui inverted relaxed divided list">
                         <div class="item">
                             <div class="content">
                                 <div class="header">Fried Chicken</div>
@@ -139,10 +140,10 @@
             </div>
             <div class="column">
                 <div class="ui inverted segment">
-                    <div class="ui inverted relaxed divided list">
-                            <div class="fluid ui large label" align="middle">
-                                    <p style="text-align:centered;">Dinner</p>
-                                </div>
+                    <div class="fluid ui large label" align="middle">
+                        <p style="text-align:centered;">Dinner</p>
+                    </div>                    
+                    <div id="dinnerDisplay" class="ui inverted relaxed divided list">
                         <div class="item">
                             <div class="content">
                                 <div class="header">Twinkie</div>
@@ -211,13 +212,13 @@
           return day + ' ' + monthNames[monthIndex] + ' ' + year;
         }
 
-        let ref = firebase.database().ref();
-        ref.on("value", function(snapshot) {
-            console.log(snapshot.val());
+        // let ref = firebase.database().ref();
+        // ref.on("value", function(snapshot) {
+        //     console.log(snapshot.val());
 
-        }, function(error) {
-            console.log("Error: " + error.code);
-        });
+        // }, function(error) {
+        //     console.log("Error: " + error.code);
+        // });
 
 
         function addToNutrition(userID, mealName, calIntake, type) {
@@ -239,21 +240,95 @@
                 document.getElementById("dinnerIntake").value = "";
             }
         }
-        function populateList() {
+
+        function populateListBreakfast(mealName, calIntake) {
+            let pop1 = document.createElement("div");
+            pop1.setAttribute("class","item");
+            document.getElementById("breakfastDisplay").appendChild(pop1);
+            let pop2 = document.createElement("div");
+            pop2.setAttribute("class","content");
+            let pop2Text = document.createTextNode("Calorie: " + calIntake);
+            pop2.appendChild(pop2Text);
+            let pop3 = document.createElement("div");
+            pop3.setAttribute("class","header");
+            let pop3Text = document.createTextNode(mealName);
+            pop3.appendChild(pop3Text);
+            pop2.appendChild(pop3);
+            pop2.appendChild(pop2Text);
+            pop1.appendChild(pop2);
+        }
+        function populateListLunch(mealName, calIntake) {
+            let pop1 = document.createElement("div");
+            pop1.setAttribute("class","item");
+            document.getElementById("lunchDisplay").appendChild(pop1);
+            let pop2 = document.createElement("div");
+            pop2.setAttribute("class","content");
+            let pop2Text = document.createTextNode("Calorie: " + calIntake);
+            pop2.appendChild(pop2Text);
+            let pop3 = document.createElement("div");
+            pop3.setAttribute("class","header");
+            let pop3Text = document.createTextNode(mealName);
+            pop3.appendChild(pop3Text);
+            pop2.appendChild(pop3);
+            pop2.appendChild(pop2Text);
+            pop1.appendChild(pop2);
+            
+        }
+        function populateListDinner(mealName, calIntake) {
+            let pop1 = document.createElement("div");
+            pop1.setAttribute("class","item");
+            document.getElementById("dinnerDisplay").appendChild(pop1);
+            let pop2 = document.createElement("div");
+            pop2.setAttribute("class","content");
+            let pop2Text = document.createTextNode("Calorie: " + calIntake);
+            pop2.appendChild(pop2Text);
+            let pop3 = document.createElement("div");
+            pop3.setAttribute("class","header");
+            let pop3Text = document.createTextNode(mealName);
+            pop3.appendChild(pop3Text);
+            pop2.appendChild(pop3);
+            pop2.appendChild(pop2Text);
+            pop1.appendChild(pop2);
+            
+        }        
+        function populateFromDatabase() {
+            let ref = firebase.database().ref("users/");
+            ref.on("value", function(snapshot) {
+                console.log(snapshot.val());
+                console.log(snapshot.val().type);
+                if(snapshot.val().type === "Breakfast" && snapshot.val().date.getDate === new Date().getDate) {
+                    populateListBreakfast(snapshot.type, snapshot.calories);
+                }
+                else if(snapshot.type === "Lunch" && snapshot.date.getDate === new Date().getDate) {
+                    populateListLunch(snapshot.type, snapshot.calories);
+
+                }
+                else if(snapshot.type === "Dinner" && snapshot.date.getDate === new Date().getDate) {
+                    populateListLunch(snapshot.type, snapshot.calories);
+
+                }
+
+            }, function(error) {
+                console.log("Error: " + error.code);
+            });            
 
         }
+        populateFromDatabase();
 
         let breakfastAddBtn = document.getElementById("breakfast-button");
         breakfastAddBtn.addEventListener('click', () => {
             console.log(firebase.auth().currentUser.uid + " " + document.getElementById("breakfastName").value + " " + document.getElementById("breakfastIntake").value + " ");
+            populateListBreakfast(document.getElementById("breakfastName").value, document.getElementById("breakfastIntake").value);
             addToNutrition(firebase.auth().currentUser.uid, document.getElementById("breakfastName").value, document.getElementById("breakfastIntake").value, "Breakfast");
         });
         let lunchAddBtn = document.getElementById("lunch-button");
         lunchAddBtn.addEventListener('click', () => {
+            populateListLunch(document.getElementById("lunchName").value, document.getElementById("lunchIntake").value);
             addToNutrition(firebase.auth().currentUser.uid, document.getElementById("lunchName").value, document.getElementById("lunchIntake").value, "Lunch");
         });
         let dinnerAddBtn = document.getElementById("dinner-button");
         dinnerAddBtn.addEventListener('click', () => {
+            populateListDinner(document.getElementById("dinnerName").value, document.getElementById("dinnerIntake").value);
             addToNutrition(firebase.auth().currentUser.uid, document.getElementById("dinnerName").value, document.getElementById("dinnerIntake").value, "Dinner");
         });
 
