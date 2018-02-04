@@ -226,52 +226,50 @@
           return day + ' ' + monthNames[monthIndex] + ' ' + year;
         }
 
-        function addToBreakfast(userID, mealName, calIntake) {
-            console.log(userID);
-            firebase.database().ref('users/' + userID).set({
-                    "date": formatDate(new Date()),
-                    "breakfast": [
-                        {
-                            'name': mealName, 'calories': calIntake
-                        }
-                    ]
+        let ref = firebase.database().ref();
+        ref.on("value", function(snapshot) {
+            console.log(snapshot.val());
+
+        }, function(error) {
+            console.log("Error: " + error.code);
+        });
+
+
+        function addToNutrition(userID, mealName, calIntake, type) {
+            firebase.database().ref('users/' + userID).push({
+                    "type": type,
+                    'name': mealName, 'calories': calIntake, "date": new Date().getTime()
+
             });
+            if(type === "Breakfast") {
+                document.getElementById("breakfastName").value = "";
+                document.getElementById("breakfastIntake").value = "";
+            }
+            else if(type === "Lunch") {
+                document.getElementById("lunchName").value = "";
+                document.getElementById("lunchIntake").value = "";
+            }
+            else {
+                document.getElementById("dinnerName").value = "";
+                document.getElementById("dinnerIntake").value = "";
+            }
+        }
+        function populateList() {
+            
         }
 
-        function addToLunch(userID, mealName, calIntake) {
-            firebase.database().ref('users/' + userID).set({
-                    "date": formatDate(new Date()),
-                    "lunch": { mealName: calIntake}
-            });
-        }
-
-        function addToDinner(userID, mealName, calIntake) {
-            firebase.database().ref('users/' + userID).set({
-                    "date": formatDate(new Date()),
-                    "dinner": { mealName: calIntake}
-            });
-        }
-
-        // let writeDataLink = document.getElementById("writeData")
-        // writeDataLink.addEventListener('click', () => {
-        //     writeUserData("1", "Test", "test@test.com")
-        // });
-
-        // document.getElementById('register').addEventListener('click', () => {
-        //     $('#modal-window').modal('show');
-        // });
         let breakfastAddBtn = document.getElementById("breakfast-button");
         breakfastAddBtn.addEventListener('click', () => {
             console.log(firebase.auth().currentUser.uid + " " + document.getElementById("breakfastName").value + " " + document.getElementById("breakfastIntake").value + " ");
-            addToBreakfast(firebase.auth().currentUser.uid, document.getElementById("breakfastName").value, document.getElementById("breakfastIntake").value);
+            addToNutrition(firebase.auth().currentUser.uid, document.getElementById("breakfastName").value, document.getElementById("breakfastIntake").value, "Breakfast");
         });
         let lunchAddBtn = document.getElementById("lunch-button");
         lunchAddBtn.addEventListener('click', () => {
-            addToLunch(firebase.auth().currentUser.uid, document.getElementById("lunchName").value, document.getElementById("lunchIntake").value);
+            addToNutrition(firebase.auth().currentUser.uid, document.getElementById("lunchName").value, document.getElementById("lunchIntake").value, "Lunch");
         });
         let dinnerAddBtn = document.getElementById("dinner-button");
         dinnerAddBtn.addEventListener('click', () => {
-            addToDinner(firebase.auth().currentUser.uid, document.getElementById("dinnerName").value, document.getElementById("dinnerIntake").value);
+            addToNutrition(firebase.auth().currentUser.uid, document.getElementById("dinnerName").value, document.getElementById("dinnerIntake").value, "Dinner");
         });
 
 

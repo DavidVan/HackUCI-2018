@@ -1,13 +1,23 @@
        // Initialize Firebase
-        let config = {
-            apiKey: "AIzaSyD69_6YZen6nLawXQ14vI4fBwGiaw2Ets8",
-            authDomain: "hackuci2018-dcb66.firebaseapp.com",
-            databaseURL: "https://hackuci2018-dcb66.firebaseio.com",
-            projectId: "hackuci2018-dcb66",
-            storageBucket: "",
-            messagingSenderId: "298079984245"
-        };
-        firebase.initializeApp(config);
+        // let config = {
+        //     apiKey: "AIzaSyD69_6YZen6nLawXQ14vI4fBwGiaw2Ets8",
+        //     authDomain: "hackuci2018-dcb66.firebaseapp.com",
+        //     databaseURL: "https://hackuci2018-dcb66.firebaseio.com",
+        //     projectId: "hackuci2018-dcb66",
+        //     storageBucket: "",
+        //     messagingSenderId: "298079984245"
+        // };
+        // firebase.initializeApp(config);
+          // Initialize Firebase
+  let config = {
+    apiKey: "AIzaSyCCbUPOnTUmdgyLnPssujLwJcDA6yx-wS0",
+    authDomain: "teamdavid-e0d2d.firebaseapp.com",
+    databaseURL: "https://teamdavid-e0d2d.firebaseio.com",
+    projectId: "teamdavid-e0d2d",
+    storageBucket: "teamdavid-e0d2d.appspot.com",
+    messagingSenderId: "65292281694"
+  };
+  firebase.initializeApp(config);
 
 
 
@@ -89,15 +99,12 @@
         //     $('#modal-window').modal('show');
         // });
         function checkIfOn() {
-            console.log(firebase.auth().currentUser);
             if(firebase.auth().currentUser !== null) {
                 let loginBtn = document.getElementById("login");
-                console.log("Hello");
                 loginBtn.innerText = "Logout";
                 document.getElementById("register").style.display = 'none';
 
             } 
-            console.log("HELLO WORLD");
         }
 
-        window.setTimeout(checkIfOn,500);
+        window.setTimeout(checkIfOn,400);
