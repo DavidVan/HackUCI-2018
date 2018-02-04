@@ -54,7 +54,7 @@
         </div>
     </div>
     <div id="ui-content" class="ui segment">
-        <p>Add Graph of calories burn and calories eaten here!!!</p>
+        <div id="chartContainer"></div>
         <div id="progress-bar" class="ui progress">
             <div id="bar" class="bar">
             </div>
@@ -176,13 +176,15 @@
             </div>
         </div>
 
-        
+
     <style>
         #block-header-bar {
             background-color: #a5a2a2;
             padding: 10px;
         }
     </style>
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <script src="/custom.js"></script>
     <script src="/nutrition.js"></script>
@@ -238,7 +240,7 @@
             }
         }
         function populateList() {
-            
+
         }
 
         let breakfastAddBtn = document.getElementById("breakfast-button");

@@ -28,65 +28,58 @@
     </div>
     <div id='modal-window' class="ui modal">
         <div class="header">Register</div>
-    <div id='registerinformation' class="ui input">
-        <input id='registerform-email' placeholder="Email" type="text">
+        <div id='registerinformation' class="ui input">
+            <input id='registerform-email' placeholder="Email" type="text">
 
-        <input id='registerform-password' placeholder="password" type="text">
-    </div>
-    <div class="actions">
-        <div id='registerform-registerbutton' class="ui approve button">Register!</div>
-        <div class="ui cancel button">Cancel</div>
+            <input id='registerform-password' placeholder="password" type="text">
+        </div>
+        <div class="actions">
+            <div id='registerform-registerbutton' class="ui approve button">Register!</div>
+            <div class="ui cancel button">Cancel</div>
         </div>
     </div>
     <div id='modal-login' class="ui modal">
         <div class="header">Login</div>
-    <div id='loginInformation' class="ui input">
-        <input id='loginform-email' placeholder="Email" type="text">
+        <div id='loginInformation' class="ui input">
+            <input id='loginform-email' placeholder="Email" type="text">
 
-        <input id='loginform-password' placeholder="password" type="text">
-    </div>
-    <div class="actions">
-        <div id='loginform-loginbutton' class="ui approve button">Login!</div>
-        <div class="ui cancel button">Cancel</div>
+            <input id='loginform-password' placeholder="password" type="text">
+        </div>
+        <div class="actions">
+            <div id='loginform-loginbutton' class="ui approve button">Login!</div>
+            <div class="ui cancel button">Cancel</div>
         </div>
     </div>
 
     </div>
     <div id="ui-content" class="ui segment">
         <p>Workouts page</p>
+        <div id="chartContainer"></div>
     </div>
     <div class="ui three column very relaxed grid">
-        <div class="column">
-          <p></p>
-          <p></p>
-          <p></p>
-          <p></p>
-        </div>
-        <div class="ui vertical divider">
-          and
-        </div>
+        <div class="column"></div>
         <div class="column">
             <div class="ui text shape">
                 <div class="sides">
-                  <div class="fluid ui label" align="middle">
-                    Minutes
-                  </div>
-                  <div class="fluid ui input">
-                    <input id="Minutes" type="text" value="" placeholder="Enter minutes...">
-    
-                  </div>
-                  <div class="ui fitted hidden divider"></div>
-                  <div class="fluid ui label" align="middle">
-                    Weight
-                  </div>
-                  <div class="fluid ui input">
-                    <input id="Weight" type="text" value="" placeholder="Enter weight...">
-                  </div>
-                  <div class="ui fitted hidden divider"></div>
-                  <div class="fluid ui label" align="middle">
-                    Workout
-                  </div>
-                  <select class=" fluid ui dropdown" id="workout">
+                    <div class="fluid ui label" align="middle">
+                        Minutes
+                    </div>
+                    <div class="fluid ui input">
+                        <input id="Minutes" type="text" value="" placeholder="Enter minutes...">
+
+                    </div>
+                    <div class="ui fitted hidden divider"></div>
+                    <div class="fluid ui label" align="middle">
+                        Weight
+                    </div>
+                    <div class="fluid ui input">
+                        <input id="Weight" type="text" value="" placeholder="Enter weight...">
+                    </div>
+                    <div class="ui fitted hidden divider"></div>
+                    <div class="fluid ui label" align="middle">
+                        Workout
+                    </div>
+                    <select class=" fluid ui dropdown" id="workout">
                     <option value="">Select Workout</option>
                     <option value=211>Abdominal Crunches</option>
                     <option value=212>Abdominal Leg Raise</option>
@@ -575,68 +568,66 @@
                     <option value=63844999>Zumba</option>
                     <option value=20499218>Zumba® Fitness</option>
                   </select>
-                  <div class="ui fitted hidden divider"></div>
-    
-                            <div class="ui section divider"></div>
-                  <button id= "calculate" class="ui blue button">Calculate</button>
-                  <div class="ui input">
-                    <input id="calorie_loss" type="text" placeholder="Calculated calorie loss" >
-        </div>
-        <div class="column">
-            <div class="ui text shape">
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                    <p></p>
-              </div>
-        </div>
-    </div>
-    <style>
-        #block-header-bar {
-            background-color: #a5a2a2;
-            padding: 10px;
-        }
-    </style>
-    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
-    <script src = "/custom.js"></script>
-    <script>
-      document.getElementById("calculate").addEventListener("click",()=>{
-        sum()
-      })
-      function sum()
-      {
-        //firebase.initializeApp(config);
-        let weight_box=parseFloat(document.getElementById("Weight").value)
-        let min_box=parseInt(document.getElementById("Minutes").value)
-        let workout_box=parseFloat(document.getElementById("workout").value)
-        console.log(workout_box)
-        console.log(min_box)
-        console.log(weight_box)
-        result = (min_box/60)*weight_box*workout_box
-        console.log(result)
-        //document.getElementById("calorie_loss").value = result;
-        let body= {
-        "id": workout_box,
-        "minutes": min_box,
-        "weight": weight_box
-        }
+                    <div class="ui fitted hidden divider"></div>
 
-        let myInit = {method: 'POST',
-                      body:JSON.stringify(body),
-                      headers: {
-                      'Content-Type': 'application/json'
-},
-                      };
+                    <div class="ui section divider"></div>
+                    <button id="calculate" class="ui blue button">Calculate</button>
+                    <div class="ui input">
+                        <input id="calorie_loss" type="text" placeholder="Calculated calorie loss">
+                    </div>
+                </div>
+                <style>
+                    #block-header-bar {
+                        background-color: #a5a2a2;
+                        padding: 10px;
+                    }
+                </style>
+                <script src="http://d3js.org/d3.v4.min.js"></script>
+                <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+                <script src="/custom.js"></script>
+                <script src="/workout.js"></script>
+                </script>
+                <script>
+                    document.getElementById("calculate").addEventListener("click", () => {
+                        sum()
+                    })
 
-        fetch('/calculate_calories', myInit).then(function(response) {
-          return response.json();
-        }).then(function(json) {
-          document.getElementById("calorie_loss").value = result;
-        });
-      }
+                    function sum() {
+                        //firebase.initializeApp(config);
+                        let weight_box = parseFloat(document.getElementById("Weight").value)
+                        let min_box = parseInt(document.getElementById("Minutes").value)
+                        let workout_box = parseInt(document.getElementById("workout").value)
+                        //result = (min_box / 60) * weight_box * workout_box
+                        //document.getElementById("calorie_loss").value = result;
+                        let body = {
+                            "id": workout_box,
+                            "minutes": min_box,
+                            "weight": weight_box
+                        }
 
+                        let myInit = {
+                            method: 'POST',
+                            body: JSON.stringify(body),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                        };
 
-    </script>
+                        fetch('/calculate_calories', myInit).then(function(response) {
+                            return response.json();
+                        }).then(function(json) {
+                            document.getElementById("calorie_loss").value = json.answer
+                            totalBurned += json.answer
+                            let dataForGraph = {
+                                "time": new Date().toTimeString().substring(0, 8),
+                                "amount": totalBurned
+                            };
+                            data.push(dataForGraph);
+                            graph(data)
+                        });
+                    }
+                </script>
 </body>
 
 </html>
