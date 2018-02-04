@@ -55,9 +55,8 @@
     </div>
     <div id="ui-content" class="ui segment">
         <p>Add Graph of calories burn and calories eaten here!!!</p>
-        <div class="ui progress">
-            <div class="bar">
-                <div class="progress"></div>
+        <div id="progress-bar" class="ui progress">
+            <div id="bar" class="bar">
             </div>
             <div class="label">1337/2000 Calories Consumed</div>
         </div>
@@ -202,7 +201,8 @@
         }
     </style>
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
-    <script src = "/custom.js"></script>
+    <script src="/custom.js"></script>
+    <script src="/nutrition.js"></script>
     <script>
 
         function writeUserData(userId, name, email) {
@@ -272,7 +272,7 @@
         let dinnerAddBtn = document.getElementById("dinner-button");
         dinnerAddBtn.addEventListener('click', () => {
             addToDinner(firebase.auth().currentUser.uid, document.getElementById("dinnerName").value, document.getElementById("dinnerIntake").value);
-        });        
+        });
 
 
     </script>
