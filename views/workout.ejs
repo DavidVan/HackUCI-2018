@@ -22,8 +22,35 @@
                 <img class="ui avatar image" src="/testdoge.jpg">
                 <span>Username</span>
             </a>
-            <a class="ui item">Logout</a>
+            <a id="login" class="ui item">Login</a>
+            <a id="register" class="ui item">Register</a>
         </div>
+    </div>
+    <div id='modal-window' class="ui modal">
+        <div class="header">Register</div>
+    <div id='registerinformation' class="ui input">
+        <input id='registerform-email' placeholder="Email" type="text">
+
+        <input id='registerform-password' placeholder="password" type="text">
+    </div>
+    <div class="actions">
+        <div id='registerform-registerbutton' class="ui approve button">Register!</div>
+        <div class="ui cancel button">Cancel</div>
+        </div>
+    </div>
+    <div id='modal-login' class="ui modal">
+        <div class="header">Login</div>
+    <div id='loginInformation' class="ui input">
+        <input id='loginform-email' placeholder="Email" type="text">
+
+        <input id='loginform-password' placeholder="password" type="text">
+    </div>
+    <div class="actions">
+        <div id='loginform-loginbutton' class="ui approve button">Login!</div>
+        <div class="ui cancel button">Cancel</div>
+        </div>
+    </div>
+
     </div>
     <div id="ui-content" class="ui segment">
         <p>Workouts page</p>
