@@ -63,25 +63,10 @@
 
         <div class="ui three column very relaxed grid">
             <div class="column">
-                <div class=" fluid ui large label">
-                    <p style="text-align:centered;">Breakfast</p>
-                </div>
-            </div>
-            <div class="column">
-                <div class="fluid ui large label">
-                    <p style="text-align:centered;">Lunch</p>
-                </div>
-            </div>
-            <div class="column">
-                <div class="fluid ui large label">
-                    <p style="text-align:centered;">Dinner</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="ui three column very relaxed grid">
-            <div class="column">
                 <div class="ui inverted segment">
+                        <div class=" fluid ui large label" align="middle">
+                                <p style="text-align:centered;">Breakfast</p>
+                            </div>
                     <div class="ui inverted relaxed divided list">
                         <div class="item">
                             <div class="content">
@@ -102,11 +87,25 @@
                             </div>
                         </div>
                     </div>
+                    <div class="ui divider"></div>
+                    <div class="ui divider"></div>
+                    <div class="fluid ui input" align="middle">
+                            <input id='breakfastName' type="text" placeholder="Food Name">
+                    </div>
+                    <div class="fluid ui input">
+                            <input id= 'breakfastIntake' type="text" placeholder="Calories">
+                    </div>
+                    <div class="ui divider"></div>
+
+                <button id= 'breakfast-button' class="fluid ui button">Add</button>
                 </div>
             </div>
             <div class="column">
                 <div class="ui inverted segment">
                     <div class="ui inverted relaxed divided list">
+                            <div class="fluid ui large label" align="middle">
+                                    <p style="text-align:centered;">Lunch</p>
+                                </div>
                         <div class="item">
                             <div class="content">
                                 <div class="header">Fried Chicken</div>
@@ -125,12 +124,25 @@
                                 Calories: 321 | Protein(g):100 | Fat(g):230
                             </div>
                         </div>
+                        <div class="ui divider"></div>
+                        <div class="ui divider"></div>
+                        <div class="fluid ui input">
+                                <input id= 'lunchName' type="text" placeholder="Food Name">
+                        </div>
+                        <div class="fluid ui input">
+                                <input id= 'lunchIntake' type="text" placeholder="Calories">
+                        </div>
+                        <div class="ui divider"></div>
+                    <button id= 'lunch-button' class="fluid ui button">Add</button>
                     </div>
                 </div>
             </div>
             <div class="column">
                 <div class="ui inverted segment">
                     <div class="ui inverted relaxed divided list">
+                            <div class="fluid ui large label" align="middle">
+                                    <p style="text-align:centered;">Dinner</p>
+                                </div>
                         <div class="item">
                             <div class="content">
                                 <div class="header">Twinkie</div>
@@ -150,50 +162,21 @@
                             </div>
                         </div>
                     </div>
+                    <div class="ui divider"></div>
+                    <div class="ui divider"></div>
+                    <div class="fluid ui input">
+                            <input id= 'dinnerName' type="text" placeholder="Food Name">
+                    </div>
+                    <div class="fluid ui input">
+                            <input id= 'dinnerIntake' type="text" placeholder="Calories">
+                    </div>
+                    <div class="ui divider"></div>
+                <button id='dinner-button' class="fluid ui button">Add</button>
                 </div>
             </div>
         </div>
 
-        <div class="ui three column very relaxed grid">
-            <div class="column">
-                <div class="ui inverted segment">
-                        <div class="fluid ui input">
-                                <input id='breakfastName' type="text" placeholder="Food Name">
-                        </div>
-                        <div class="fluid ui input">
-                                <input id= 'breakfastIntake' type="text" placeholder="Calories">
-                        </div>
-                        <div class="ui divider"></div>
-
-                    <button id= 'breakfast-button' class="fluid ui button">Add</button>
-                </div>
-            </div>
-            <div class="column">
-                <div class="ui inverted segment">
-                        <div class="fluid ui input">
-                                <input id= 'lunchName' type="text" placeholder="Food Name">
-                        </div>
-                        <div class="fluid ui input">
-                                <input id= 'lunchIntake' type="text" placeholder="Calories">
-                        </div>
-                        <div class="ui divider"></div>
-                    <button id= 'lunch-button' class="fluid ui button">Add</button>
-                </div>
-            </div>
-            <div class="column">
-                <div class="ui inverted segment">
-                        <div class="fluid ui input">
-                                <input id= 'dinnerName' type="text" placeholder="Food Name">
-                        </div>
-                        <div class="fluid ui input">
-                                <input id= 'dinnerIntake' type="text" placeholder="Calories">
-                        </div>
-                        <div class="ui divider"></div>
-                    <button id='dinner-button' class="fluid ui button">Add</button>
-                </div>
-            </div>
-        </div>
-    </div>
+        
     <style>
         #block-header-bar {
             background-color: #a5a2a2;
