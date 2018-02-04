@@ -50,7 +50,7 @@
               <div class="fluid ui label" align="middle">
                 Workout
               </div>
-              <select class=" fluid ui dropdown">
+              <select class=" fluid ui dropdown" id="workout">
                 <option value="">Select Workout</option>
                 <option value=211>Abdominal Crunches</option>
                 <option value=212>Abdominal Leg Raise</option>
@@ -540,20 +540,8 @@
                 <option value=20499218>Zumba® Fitness</option>
               </select>
               <div class="ui fitted hidden divider"></div>
-              <div class="fluid ui label" align="middle">
-                Gender
-              </div>
-              <div class="fluid ui selection dropdown">
-                <input type="hidden" name="gender">
-                <i class="dropdown icon"></i>
-                <div class="default text">Gender</div>
-                <div class="menu">
-                  <div class="item" data-value="1">Male</div>
-                  <div class="item" data-value="0">Female</div>
-                </div>
-              </div>
 
-              <div class="ui section divider"></div>
+                        <div class="ui section divider"></div>
               <button id= "calculate" class="ui blue button">Calculate</button>
               <div class="ui input">
                 <input id="calorie_loss" type="text" placeholder="Calculated calorie loss" >
@@ -624,24 +612,30 @@
         //firebase.initializeApp(config);
         let weight_box=parseFloat(document.getElementById("Weight").value)
         let min_box=parseInt(document.getElementById("Minutes").value)
+        let workout_box=parseFloat(document.getElementById("workout").value)
+        console.log(workout_box)
         console.log(min_box)
         console.log(weight_box)
-        result = weight_box + min_box
+        result = (min_box/60)*weight_box*workout_box
         console.log(result)
-        document.getElementById("calorie_loss").value = result;
+        //document.getElementById("calorie_loss").value = result;
         let body= {
-        "id": "80",
+        "id": workout_box,
         "minutes": min_box,
         "weight": weight_box
         }
-        var myInit = {method: 'POST',
-                      body:JSON.stringify(body)
+
+        let myInit = {method: 'POST',
+                      body:JSON.stringify(body),
+                      headers: {
+                      'Content-Type': 'application/json'
+},
                       };
 
         fetch('/calculate_calories', myInit).then(function(response) {
           return response.json();
         }).then(function(json) {
-          console.log(json)
+          document.getElementById("calorie_loss").value = result;
         });
       }
 
